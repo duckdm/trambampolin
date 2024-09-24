@@ -13,11 +13,11 @@ function Float:new(tram, opt)
     setmetatable(float, self)
     self.__index = self
 
-    self.tram = tram
-    self.window = nil
-    self.opt = opt
+    float.tram = tram
+    float.window = nil
+    float.opt = opt
 
-    return self
+    return float
 end
 
 --- Open float
@@ -27,7 +27,6 @@ function Float:open()
   local buffer = self.tram:get_buffer()
 
   self.window = Window:new({
-    id = -1,
     buffer = buffer,
     enter = self.opt.enter or false,
   }, {
@@ -55,6 +54,7 @@ function Float:close()
   local win = self.window and self.window.id or nil
   if win and vim.api.nvim_win_is_valid(win) then
     self.window:close()
+    self.window = nil
   end
   return self
 end

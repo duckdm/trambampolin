@@ -3,6 +3,7 @@
 ---@field public listed boolean
 ---@field public scratch boolean
 ---@field public cursor integer[]|nil
+---@field public name string|nil
 ---@field public set_name fun(self: Buffer, name: string): Buffer
 ---@field public process_lines fun(self: Buffer, up_lines: Line[], from: number): table
 ---@field public print fun(self: Buffer, lines: Line[], from: number): Buffer
@@ -30,6 +31,7 @@ function Buffer:new(arg)
   buffer.scratch = arg.scratch or true
   buffer.id = vim.api.nvim_create_buf(buffer.listed, buffer.scratch)
   buffer.cursor = nil
+  buffer.name = nil
 
   return buffer
 end
@@ -38,6 +40,7 @@ end
 ---@param name string
 ---return Buffer
 function Buffer:set_name(name)
+  self.name = name
   vim.api.nvim_buf_set_name(self.id, name)
   return self
 end
