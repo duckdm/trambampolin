@@ -27,7 +27,7 @@ function M:new()
     setmetatable(m, self)
     self.__index = self
 
-    m.version = "v0.0.1-alpha"
+    m.version = "v0.0.1"
     m.lines = {}
     m.line_no = 0
     m.buffer = nil
