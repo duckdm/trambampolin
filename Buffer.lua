@@ -85,7 +85,7 @@ function Buffer:process_lines(up_lines, from)
         end
         table.insert(virt_lines, {
           text = line.virt_text,
-          hl_group = line.colors[1].group,
+          hl_group = line.colors[1] and line.colors[1].group or "",
           ns_name = line.ns_name or "trambampolin",
           line_no = virt_line_no,
           virt_text_pos = line.pos or "overlay",
